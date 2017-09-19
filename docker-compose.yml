@@ -1,40 +1,44 @@
-router:
-    image: elasticsearch:2.4.6
-    command: "elasticsearch -Des.node.master=false -Des.node.data=false -Des.node.name=node_router -Des.discovery.zen.ping.unicast.hosts=master"
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    links:
-      - master
-    volumes:
-      - /data/elasticsearch/es_data:/data
-      - /data/elasticsearch/config:/usr/share/elasticsearch/config
-      - /data/elasticsearch/plugins:/usr/share/elasticsearch/plugins
+version: '2'
+services:
+  router:
+      image: elasticsearch:2.4.6
+      command: "elasticsearch -Des.node.master=false -Des.node.data=false -Des.node.name=node_router -Des.discovery.zen.ping.unicast.hosts=master"
+      ports:
+        - "9200:9200"
+        - "9300:9300"
+      links:
+        - master
+      volumes:
+        - ./es-data:/data
+        - ./config:/usr/share/elasticsearch/config
+        - ./plugins:/usr/share/elasticsearch/plugins
 
-master:
-    image: elasticsearch:2.4.6
-    command: "elasticsearch -Des.node.name=node_02"
-    volumes:
-      - /data/elasticsearch/es_data:/data
-      - /data/elasticsearch/config:/usr/share/elasticsearch/config
-      - /data/elasticsearch/plugins:/usr/share/elasticsearch/plugins
+  master:
+      image: elasticsearch:2.4.6
+      command: "elasticsearch -Des.node.name=node_02"
+      volumes:
+        - ./es-data:/data
+        - ./config:/usr/share/elasticsearch/config
+        - ./plugins:/usr/share/elasticsearch/plugins
 
-node_03:
-    image: elasticsearch:2.4.6
-    command: "elasticsearch -Des.node.name=node_03 -Des.discovery.zen.ping.unicast.hosts=master"
-    links:
-      - master
-    volumes:
-      - /data/elasticsearch/es_data:/data
-      - /data/elasticsearch/config:/usr/share/elasticsearch/config
-      - /data/elasticsearch/plugins:/usr/share/elasticsearch/plugins
+  node_03:
+      image: elasticsearch:2.4.6
+      command: "elasticsearch -Des.node.name=node_03 -Des.discovery.zen.ping.unicast.hosts=master"
+      links:
+        - master
+      volumes:
+        - ./es-data:/data
+        - ./config:/usr/share/elasticsearch/config
+        - ./plugins:/usr/share/elasticsearch/plugins
 
-node_04:
-    image: elasticsearch:2.4.6
-    command: "elasticsearch -Des.node.name=node_04 -Des.discovery.zen.ping.unicast.hosts=master"
-    links:
-      - master
-    volumes:
-      - /data/elasticsearch/es_data:/data
-      - /data/elasticsearch/config:/usr/share/elasticsearch/config
-      - /data/elasticsearch/plugins:/usr/share/elasticsearch/plugins
+  node_04:
+      image: elasticsearch:2.4.6
+      command: "elasticsearch -Des.node.name=node_04 -Des.discovery.zen.ping.unicast.hosts=master"
+      links:
+        - master
+      volumes:
+        - ./es-data:/data
+        - ./config:/usr/share/elasticsearch/config
+        - ./plugins:/usr/share/elasticsearch/plugins
+
+

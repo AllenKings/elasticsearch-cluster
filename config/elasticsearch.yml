@@ -1,3 +1,4 @@
+# search guard config :
 searchguard:
   ssl:
     transport:
@@ -17,16 +18,18 @@ searchguard:
     admin_dn:
       - CN=sga, OU=SSL, O=Test, L=Test, C=CN
 
+# cluster
 cluster:
   name: elasticsearch
-
 network:
   host: 0.0.0.0
 
+# data path
 path:
   data: /data
   logs: /data/logs
 
+# index analysis
 index:
   analysis:
     analyzer:

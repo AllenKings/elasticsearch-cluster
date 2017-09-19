@@ -8,8 +8,7 @@ create elasticsearch cluster use docker-compose.
 ## ik 分词
 提供中文分词
 
-:smiley:如果不需要search guard插件功能，注释掉`config/elasticsearch.yml`文件中的相关配置，并删除`plugins/search-guard-2`
-和`plugins/search-guard-ssl`目录即可
+:smiley:如果不需要ik插件，注释掉`config/elasticsearch.yml`文件中的相关配置，并删除`plugins/ik`目录即可
 
 ### 配置远程热更新词库
 编辑配置文件`plugins/ik/config/IKAnalyzer.cfg.xml`
@@ -38,7 +37,8 @@ elasticsearch 自身并不带任何安全功能，这部分是由插件提供。
 
 详细的配置请参考官方文档：(http://floragunncom.github.io/search-guard-docs/)
 
-:smiley:如果不需要ik插件，注释掉`config/elasticsearch.yml`文件中的相关配置，并删除`plugins/search-guard-2`目录即可
+:smiley:如果不需要search guard插件功能，注释掉`config/elasticsearch.yml`文件中的相关配置，并删除`plugins/search-guard-2`
+和`plugins/search-guard-ssl`目录即可
 
 ### 生成相关证书
 使用官方提供的[search-guard-ssl](https://github.com/floragunncom/search-guard-ssl)项目来生成所需要的证书。
@@ -48,7 +48,7 @@ clone下来后，使用`example-pki-scripts`目录内的相关命令来生成自
 _step 1: CA_
 
 ```shell
-./gen_root_ca.sh CA_PASS 
+./gen_root_ca.sh CA_PASS TS_PASS
 ```
 
 这个`CA_PASS`和`TS_PASS`十分重要，需要记住。后面将使用`CA_PASS`来给其他证书签名，`TS_PASS`在**search guard**配置中多处使用。

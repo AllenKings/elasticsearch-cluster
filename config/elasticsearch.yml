@@ -1,0 +1,34 @@
+searchguard:
+  ssl:
+    transport:
+      enabled: true
+      keystore_password: *node-ks-psw*
+      truststore_password: *tspsw*
+      keystore_filepath: node-0-keystore.jks
+      truststore_filepath: truststore.jks
+      enforce_hostname_verification: false
+    http:
+      enabled: true
+      keystore_password: *node-ks-psw*
+      truststore_password: *tspsw*
+      keystore_filepath: node-0-keystore.jks
+      truststore_filepath: truststore.jks
+  authcz:
+    admin_dn:
+      - CN=sga, OU=SSL, O=Test, L=Test, C=CN
+
+cluster:
+  name: elasticsearch
+
+network:
+  host: 0.0.0.0
+
+path:
+  data: /data
+  logs: /data/logs
+
+index:
+  analysis:
+    analyzer:
+      ik:
+        type : "ik"

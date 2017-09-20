@@ -1,9 +1,27 @@
 # elasticsearch-cluster
 create elasticsearch cluster use docker-compose.
 
+使用docker快速创建elasticsearch集群。
+
 包含的插件:
 * [elasticsearch-analysis-ik](https://github.com/medcl/elasticsearch-analysis-ik)
 * [search guard 2](https://floragunn.com/)
+
+## 目录
+* [ik 分词](#ik-分词)
+	 * [配置远程热更新词库](#配置远程热更新词库)
+* [search guard 安全插件](#search-guard-安全插件)
+	 * [生成相关证书](#生成相关证书)
+	 * [将证书COPY至配置目录](#将证书copy至配置目录)
+	 * [添加用户](#添加用户)
+	 * [自定义角色](#自定义角色)
+	 * [映射角色和用户的关系](#映射角色和用户的关系)
+* [启动集群](#启动集群)
+	 * [修改docker-compose配置](#修改docker-compose配置)
+	 * [修改节点配置](#修改节点配置)
+	 * [运行集群](#运行集群)
+	 * [初始化Search Guard](#初始化search-guard)
+
 
 ## ik 分词
 提供中文分词
